@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+        #div1 {
+            width: 30%;
+            height: 200px;
+            background-color: lightgray;
+            position: absolute;
+            border-radius: 10px;
+            left: 35%;
+            top: 25%;
+        }
+
+        #KullaniciAdi {
+            width: 150px;
+            height: 30px;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+
+
+        #parola {
+            width: 150px;
+            height: 30px;
+            margin-left: 66px;
+            margin-top: 20px;
+        }
+
+        #btn {
+            width: 250px;
+            height: 30px;
+            margin-left: 73px;
+            margin-top: 10px;
+        }
+
+
+    </style>
+
+
+</head>
+<body id="arka">
+
+    <div id="div1">
+
+        <label style="margin-left: 60px" for="KullaniciAdi">Kullanıcı Adı :</label>
+        <input id="KullaniciAdi" type="text" />
+
+        <label style="margin-left: 60px" for="parola">Parola :</label>
+        <input id="parola" type="password" />
+
+        <br /> <br />
+
+        <button   onclick="GirisOnayi()"  id="btn">Giriş Yap</button>
+
+    </div>
+
+
+
+
+
+
+
+    <script>
+        var text;
+        function RenkYap() {
+            var a = "ABCDEF0123456789"
+            text = "#";
+
+            for (i = 0; i < 6; i++) {
+                var random = Math.round(Math.random() * 15);
+                text += a.charAt(random);
+            }
+        }
+
+        setInterval(function () {
+
+            RenkYap();
+            document.getElementById("arka").style.backgroundColor = text;
+
+        }, 2000);
+
+
+        var kullanicilar = [{ kullaniciAdi: "admin", parola: "admin" },
+                            { kullaniciAdi: "javascript", parola: "123" },
+                            { kullaniciAdi: "irem", parola: "1234" }
+
+        ];
+
+        var girilenKullaniciAdi;
+        var girilenParola;
+        var x;
+
+        function KontrolEt() {
+
+            girilenKullaniciAdi = document.getElementById("KullaniciAdi").value;
+            girilenParola = document.getElementById("parola").value;
+
+            for (x of kullanicilar) {
+                if ((x.kullaniciAdi == girilenKullaniciAdi) && (x.parola == girilenParola)) {
+
+                    return true;
+
+                }
+                else {
+                    return false;
+                }
+                    }
+        }
+
+        function GirisOnayi() {
+
+            KontrolEt();
+            if (KontrolEt()) {
+
+                alert("Giriş Yaptınız..");
+                document.getElementById("KullaniciAdi").value == "";
+                document.getElementById("parola").value == "";
+            }
+            
+
+            else {
+                alert("Hatalı kullanıcı adı ya da şifre..Lütfen tekrar deneyiniz..");
+                document.getElementById("KullaniciAdi").value == "";
+                document.getElementById("parola").value == "";
+                 }
+        }
+
+
+    </script>
+</body>
+</html>
